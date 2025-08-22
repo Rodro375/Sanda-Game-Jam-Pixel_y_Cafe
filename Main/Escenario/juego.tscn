@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ccs5bwox8v0n0" path="res://Referencias/4457e25f-ffd9-4505-8fa9-797a279bd4a1.jpeg" id="2_7bxqb"]
 [ext_resource type="Texture2D" uid="uid://be8qebbsgiwln" path="res://Referencias/57c0b13c-c1bd-487b-8e00-e5ebf1a0fc50.jpeg" id="3_xmmyq"]
 [ext_resource type="PackedScene" uid="uid://bm74bxc563d1v" path="res://Minijuegos/Minijuego 1/minijuego_1.tscn" id="4_ichjb"]
-[ext_resource type="PackedScene" uid="uid://ivv144n7r5j1" path="res://Minijuegos/Minijuego 1/minijuego_2.tscn" id="5_ichjb"]
-[ext_resource type="PackedScene" uid="uid://br0l05a8jly2b" path="res://Minijuegos/Minijuego 1/minijuego_3.tscn" id="6_hekeb"]
-[ext_resource type="PackedScene" uid="uid://dbql8dhti3hwj" path="res://Minijuegos/Minijuego 1/minijuego_4.tscn" id="7_n287k"]
+[ext_resource type="PackedScene" uid="uid://ivv144n7r5j1" path="res://Minijuegos/Minijuego 2/minijuego_2.tscn" id="5_ichjb"]
+[ext_resource type="PackedScene" uid="uid://br0l05a8jly2b" path="res://Minijuegos/Minijuego 3/minijuego_3.tscn" id="6_hekeb"]
+[ext_resource type="PackedScene" uid="uid://dbql8dhti3hwj" path="res://Minijuegos/Minijuego 4/minijuego_4.tscn" id="7_n287k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hekeb"]
 texture = ExtResource("1_lm2n3")
