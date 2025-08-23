@@ -18,8 +18,10 @@ border_width_bottom = 20
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bml6"]
 
-[node name="Node2D" type="SubViewportContainer"]
+[node name="MinijuegoEsquivar" type="SubViewportContainer"]
 custom_minimum_size = Vector2(800, 600)
+offset_right = 800.0
+offset_bottom = 600.0
 stretch = true
 mouse_target = true
 
