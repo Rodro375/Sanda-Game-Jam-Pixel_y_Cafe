@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bquflvieturyn"]
+[gd_scene load_steps=11 format=3 uid="uid://bquflvieturyn"]
 
 [ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Esquivar/movimiento.gd" id="1_0pr0q"]
 [ext_resource type="Texture2D" uid="uid://bnm2ncx3pca8" path="res://Minijuegos/Esquivar/sprites/player2.png" id="2_xijok"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bhpid5j6k62uo" path="res://Minijuegos/Esquivar/Enemigo.gd" id="4_1q3wr"]
 [ext_resource type="PackedScene" uid="uid://g63m6j66g8rn" path="res://Minijuegos/Esquivar/objetos/bala_1.tscn" id="5_0bml6"]
 [ext_resource type="Texture2D" uid="uid://dh8rurpfnmtrw" path="res://Minijuegos/Esquivar/sprites/12.png" id="6_ab77s"]
+[ext_resource type="Texture2D" uid="uid://bedyw56a5rsnf" path="res://Minijuegos/Esquivar/sprites/1.png" id="7_qmpu8"]
+[ext_resource type="PackedScene" uid="uid://c40udwia5odnw" path="res://Minijuegos/Esquivar/objetos/bala_2.tscn" id="8_mdxcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q3wr"]
 draw_center = false
@@ -37,7 +39,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1q3wr")
 
 [node name="Escenario" type="Node2D" parent="SubViewport"]
 
-[node name="CharacterBody2D" type="RigidBody2D" parent="SubViewport/Escenario"]
+[node name="espacioBalas" type="Node2D" parent="SubViewport/Escenario"]
+
+[node name="jugador" type="RigidBody2D" parent="SubViewport/Escenario"]
 position = Vector2(445, 479)
 collision_layer = 128
 collision_mask = 128
@@ -48,19 +52,15 @@ freeze_mode = 1
 script = ExtResource("1_0pr0q")
 velocidad = 0.1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Escenario/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Escenario/jugador"]
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_0bml6")
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Escenario/CharacterBody2D/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Escenario/jugador/CollisionShape2D"]
 show_behind_parent = true
 texture = ExtResource("2_xijok")
 
-[node name="espacioBalas" type="Node2D" parent="SubViewport/Escenario"]
-
-[node name="Timer" type="Timer" parent="SubViewport/Escenario"]
-
-[node name="EnemigoVerde" type="Sprite2D" parent="SubViewport" node_paths=PackedStringArray("espacioBalistico")]
+[node name="EnemigoVerde" type="Sprite2D" parent="SubViewport/Escenario" node_paths=PackedStringArray("espacioBalistico")]
 position = Vector2(150, 150)
 scale = Vector2(4, 4)
 texture = ExtResource("3_xijok")
@@ -68,9 +68,9 @@ script = ExtResource("4_1q3wr")
 intervalosDisparo = Array[float]([1.75, 1.25, 1.0, 0.5, 0.25])
 proyectilNormal = ExtResource("5_0bml6")
 velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
-espacioBalistico = NodePath("../Escenario/espacioBalas")
+espacioBalistico = NodePath("../espacioBalas")
 
-[node name="EnemigoAzul" type="Sprite2D" parent="SubViewport" node_paths=PackedStringArray("espacioBalistico")]
+[node name="EnemigoRojo" type="Sprite2D" parent="SubViewport/Escenario" node_paths=PackedStringArray("espacioBalistico")]
 position = Vector2(641, 155)
 scale = Vector2(4, 4)
 texture = ExtResource("6_ab77s")
@@ -79,6 +79,18 @@ comportamiento = 1
 intervalosDisparo = Array[float]([1.75, 1.25, 1.0, 0.5, 0.25])
 proyectilNormal = ExtResource("5_0bml6")
 velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
-espacioBalistico = NodePath("../Escenario/espacioBalas")
+espacioBalistico = NodePath("../espacioBalas")
 
-[connection signal="body_entered" from="SubViewport/Escenario/CharacterBody2D" to="SubViewport/Escenario/CharacterBody2D" method="_on_body_entered"]
+[node name="EnemigoAzul" type="Sprite2D" parent="SubViewport/Escenario" node_paths=PackedStringArray("espacioBalistico")]
+position = Vector2(400, 200)
+scale = Vector2(4, 4)
+texture = ExtResource("7_qmpu8")
+script = ExtResource("4_1q3wr")
+comportamiento = 2
+intervalosDisparo = Array[float]([1.75, 1.25, 1.0, 0.5, 0.25])
+proyectilNormal = ExtResource("5_0bml6")
+velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
+proyectilEspecial = ExtResource("8_mdxcc")
+espacioBalistico = NodePath("../espacioBalas")
+
+[connection signal="body_entered" from="SubViewport/Escenario/jugador" to="SubViewport/Escenario/jugador" method="_on_body_entered"]
