@@ -1,11 +1,12 @@
-extends Area2D
+extends Node2D
 var mouse
+signal done
 
 var tablero_repo:PackedScene = preload("res://Minijuegos/Minijuego 1_2/Tablero/Tablero.tscn")
 
 func _process(delta):
 	if Input.is_action_just_pressed("Left_click") and mouse:
-		$MiniArea.disabled = true
+		$Minijuego1/MiniArea.disabled = true
 		mouse = false
 		var tablero = tablero_repo.instantiate()
 		tablero.puzzle_solved.connect(reactivate_area)
@@ -16,4 +17,5 @@ func _on_input_event(viewport, event, shape_idx):
 		mouse = event
 
 func reactivate_area():
-	$MiniArea.disabled = false
+	$Minijuego1/MiniArea.disabled = false
+	emit_signal("done")

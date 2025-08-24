@@ -5,4 +5,8 @@ func _ready():
 
 
 func _on_timer_timeout():
-	$TextureProgressBar.value -= 10
+	$TextureProgressBar.value -= 2
+
+
+func _on_minijuego_1_done():
+	pass # Replace with function body.
