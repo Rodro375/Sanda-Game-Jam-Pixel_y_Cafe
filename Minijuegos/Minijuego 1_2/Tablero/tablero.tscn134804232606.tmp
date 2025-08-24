@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://btr4j4g7nf7hl"]
+
+[ext_resource type="Script" uid="uid://bpwyn236u5fer" path="res://Minijuegos/Minijuego 1/Tablero/tablero.gd" id="1_4ngvv"]
+[ext_resource type="PackedScene" uid="uid://cncww8580h84" path="res://Minijuegos/Minijuego 1/Malla/malla.tscn" id="2_bex0h"]
+
+[node name="Tablero" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ngvv")
+dimensions = null
+tile_size = null
+tile_scene = ExtResource("2_bex0h")
+slide_duration = null

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7clufl4tpt6l"]
+
+[ext_resource type="Script" uid="uid://cba682f3kg7n5" path="res://Minijuegos/Minijuego 1_2/Tablero/Minijuego1.gd" id="1_gshhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwpn3"]
+size = Vector2(80, 40)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Minijuego1" type="Area2D" parent="."]
+script = ExtResource("1_gshhy")
+
+[node name="MiniArea" type="CollisionShape2D" parent="Minijuego1"]
+position = Vector2(112, 400)
+shape = SubResource("RectangleShape2D_jwpn3")
+
+[connection signal="input_event" from="Minijuego1" to="Minijuego1" method="_on_input_event"]

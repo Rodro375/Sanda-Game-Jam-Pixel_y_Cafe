@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://vtuh0kqpx20e"]
+
+[ext_resource type="Script" uid="uid://bmxohutpnixif" path="res://Minijuegos/Minijuego 1_2/Tablero/tablero.gd" id="1_4wsin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa2dj"]
+size = Vector2(384, 384)
+
+[node name="Tablero" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_4wsin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(192, 192)
+shape = SubResource("RectangleShape2D_pa2dj")
+
+[node name="Tile1" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile2" type="Sprite2D" parent="."]
+position = Vector2(192, 64)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile3" type="Sprite2D" parent="."]
+position = Vector2(320, 64)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile4" type="Sprite2D" parent="."]
+position = Vector2(64, 192)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile5" type="Sprite2D" parent="."]
+position = Vector2(192, 192)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile6" type="Sprite2D" parent="."]
+position = Vector2(320, 192)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile7" type="Sprite2D" parent="."]
+position = Vector2(64, 320)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile8" type="Sprite2D" parent="."]
+position = Vector2(192, 320)
+scale = Vector2(0.95, 0.95)
+
+[node name="Tile9" type="Sprite2D" parent="."]
+position = Vector2(320, 320)
+scale = Vector2(0.95, 0.95)
+
+[node name="Refe" type="Sprite2D" parent="."]
+position = Vector2(512, 192)
+scale = Vector2(0.45, 0.45)

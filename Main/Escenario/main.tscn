@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbxv6o88t78e6"]
+
+[ext_resource type="Texture2D" uid="uid://dih47pjh4oi26" path="res://Referencias/dormitoooo.png" id="1_0b6hh"]
+[ext_resource type="Script" uid="uid://qce2quoxsese" path="res://Main/Escenario/main.gd" id="1_trxk1"]
+[ext_resource type="PackedScene" uid="uid://b7clufl4tpt6l" path="res://Minijuegos/Minijuego 1_2/minijuego_1.tscn" id="3_86tte"]
+[ext_resource type="Script" uid="uid://b3lpfhvx4i8wl" path="res://Main/Escenario/canvas_layer.gd" id="4_muaga"]
+[ext_resource type="Texture2D" uid="uid://dcrvpk22mvoh5" path="res://Referencias/barra 1.png" id="6_km7wv"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_trxk1")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+modulate = Color(0.254902, 0.254902, 0.254902, 1)
+position = Vector2(-9.09495e-13, -9.53674e-07)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0b6hh")
+centered = false
+
+[node name="Minijuego1" parent="." instance=ExtResource("3_86tte")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_muaga")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = 40.0
+offset_right = -24.0
+offset_bottom = -392.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.665, 0.665)
+size_flags_vertical = 0
+value = 100.0
+texture_under = ExtResource("6_km7wv")
+texture_progress = ExtResource("6_km7wv")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+autostart = true
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer" method="_on_timer_timeout"]
