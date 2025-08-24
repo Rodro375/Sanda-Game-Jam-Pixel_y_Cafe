@@ -1,5 +1,5 @@
 extends Sprite2D
-enum Comportamiento{rafaga,circulo,especial}
+enum Comportamiento{unico,fijo,rafaga,circulo,especial}
 @onready var jugador = $"../jugador"
 @export var comportamiento:Comportamiento = Comportamiento.rafaga
 @export var dificultad:int
@@ -9,7 +9,7 @@ enum Comportamiento{rafaga,circulo,especial}
 @export var proyectilEspecial: PackedScene
 @export var espacioBalistico: Node2D
 func _physics_process(_delta: float) -> void:
-	if comportamiento != Comportamiento.especial:
+	if (comportamiento != Comportamiento.especial and comportamiento != Comportamiento.fijo):
 		look_at(jugador.position)
 func _ready() -> void:
 	var relojDisparo:Timer= Timer.new()
@@ -22,18 +22,17 @@ func _ready() -> void:
 		Disparar()
 func elegirIntervaloDisparo()->float:
 	if dificultad==0:
-		print("Tiempo de disparo:",intervalosDisparo[0])
+
 		return intervalosDisparo[0]
 	
 	else :
 		var tiempo:float = randf_range(intervalosDisparo[dificultad-1],intervalosDisparo[dificultad])
-		print("Tiempo de disparo:",tiempo)
+	
 		return tiempo
 func elegirComportamientoDisparo():
-	if dificultad>=3:
+	if dificultad>=3: #PUEDE ELEGIR AL AZAR SU COMPORTAMIENTO
 		var elegido:int =randi_range(0,Comportamiento.size()-1)
 		comportamiento= Comportamiento.values()[elegido]
-		print("Comportamiento elegido:",comportamiento)
 	
 		Disparar()
 	else:
@@ -41,18 +40,31 @@ func elegirComportamientoDisparo():
 func Disparar():
 	print("Orden de disparo")
 	match comportamiento:
+		Comportamiento.unico:
+			var bala:RigidBody2D=proyectilNormal.instantiate()
+			espacioBalistico.add_child(bala)
+			bala.position=global_position
+			bala.look_at(jugador.global_position)
+			bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad])
+			
+		Comportamiento.fijo:
+			var bala:RigidBody2D=proyectilNormal.instantiate()
+			espacioBalistico.add_child(bala)
+			bala.position=global_position
+			bala.rotation=rotation
+			bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad])
+		
 		Comportamiento.rafaga:
+			var rotacionFija=rotation
 			for i in range(0,3):
+				rotation=rotacionFija
 				var bala:RigidBody2D=proyectilNormal.instantiate()
-				
 				espacioBalistico.add_child(bala)
 				bala.position=global_position
-				
-				bala.look_at(jugador.global_position)
-				print("Bala en",bala.position,"mirando a ",bala.rotation_degrees)
-				bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad]+0.4*(i+1))
-				await get_tree().create_timer(intervalosDisparo[4]).timeout
-				
+				bala.rotation=rotation
+				bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad]*1.5)
+				await get_tree().create_timer(intervalosDisparo[4]).timeout #LAS BALAS TIENEN INTERFVALO MÍNIMO ENTRE SÍ
+				#POR DEFECTO ES 0.15s
 		Comportamiento.circulo:
 			for i in range(0,8):
 				var bala:RigidBody2D=proyectilNormal.instantiate()
