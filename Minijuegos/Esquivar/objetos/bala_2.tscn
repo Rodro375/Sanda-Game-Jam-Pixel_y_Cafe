@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c40udwia5odnw"]
+
+[ext_resource type="Texture2D" uid="uid://ben54603oii1x" path="res://Minijuegos/Esquivar/AssetsDef/rayorojo.png" id="1_yvmop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wul7"]
+size = Vector2(35, 14.5)
+
+[node name="bala2" type="RigidBody2D" groups=["bala"]]
+collision_layer = 128
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_7wul7")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(-1.5, -0.5)
+rotation = 1.5708
+texture = ExtResource("1_yvmop")
+region_rect = Rect2(167.66, 139.333, 9.14043, 13.493)

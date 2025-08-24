@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://0trgjpw1gmg"]
+
+[ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Esquivar/Scripts/movimiento.gd" id="1_r8i0o"]
+[ext_resource type="Texture2D" uid="uid://bsfbdc4v3tr6a" path="res://Minijuegos/Esquivar/AssetsDef/jugador.png" id="2_q71a4"]
+[ext_resource type="Texture2D" uid="uid://bu8bq8ua18p6r" path="res://Minijuegos/Esquivar/AssetsDef/nave1.png" id="3_xhv4h"]
+[ext_resource type="Script" uid="uid://bhpid5j6k62uo" path="res://Minijuegos/Esquivar/Scripts/Enemigo.gd" id="4_nptv2"]
+[ext_resource type="PackedScene" uid="uid://g63m6j66g8rn" path="res://Minijuegos/Esquivar/objetos/bala_1.tscn" id="5_clfdc"]
+[ext_resource type="Texture2D" uid="uid://de255pgq1x83q" path="res://Minijuegos/Esquivar/AssetsDef/nave3.png" id="6_x04cj"]
+[ext_resource type="Texture2D" uid="uid://bm73nyu0vdf3l" path="res://Minijuegos/Esquivar/AssetsDef/nave2.png" id="7_t2qb8"]
+[ext_resource type="PackedScene" uid="uid://c40udwia5odnw" path="res://Minijuegos/Esquivar/objetos/bala_2.tscn" id="8_my0xu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0o"]
+draw_center = false
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bml6"]
+radius = 70.0793
+
+[node name="Escenario" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 800.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8i0o")
+
+[node name="espacioBalas" type="Node2D" parent="."]
+
+[node name="jugador" type="RigidBody2D" parent="."]
+position = Vector2(391, 501)
+collision_layer = 128
+collision_mask = 128
+mass = 500.0
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_r8i0o")
+velocidad = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jugador"]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_0bml6")
+
+[node name="Sprite2D" type="Sprite2D" parent="jugador/CollisionShape2D"]
+show_behind_parent = true
+position = Vector2(-3.33333, 6.66667)
+texture = ExtResource("2_q71a4")
+
+[node name="EnemigoVerde" type="Sprite2D" parent="." node_paths=PackedStringArray("espacioBalistico")]
+position = Vector2(143, 228)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_xhv4h")
+script = ExtResource("4_nptv2")
+comportamiento = 0
+intervalosDisparo = Array[float]([1.0, 1.25, 1.0, 0.5, 0.25])
+proyectilNormal = ExtResource("5_clfdc")
+velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
+espacioBalistico = NodePath("../espacioBalas")
+
+[node name="EnemigoRojo" type="Sprite2D" parent="." node_paths=PackedStringArray("espacioBalistico")]
+position = Vector2(662, 249)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_x04cj")
+script = ExtResource("4_nptv2")
+comportamiento = 0
+intervalosDisparo = Array[float]([1.0, 1.25, 1.0, 0.5, 0.25])
+proyectilNormal = ExtResource("5_clfdc")
+velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
+espacioBalistico = NodePath("../espacioBalas")
+
+[node name="EnemigoAzul" type="Sprite2D" parent="." node_paths=PackedStringArray("espacioBalistico")]
+position = Vector2(391, 116)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_t2qb8")
+script = ExtResource("4_nptv2")
+comportamiento = 0
+intervalosDisparo = Array[float]([1.0, 1.25, 1.0, 0.5, 0.25])
+proyectilNormal = ExtResource("5_clfdc")
+velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
+proyectilEspecial = ExtResource("8_my0xu")
+espacioBalistico = NodePath("../espacioBalas")
+
+[connection signal="body_entered" from="jugador" to="jugador" method="_on_body_entered"]
