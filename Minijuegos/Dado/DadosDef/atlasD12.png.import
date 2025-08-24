@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c453myqat17jf"
-path="res://.godot/imported/d9.png-5bd346fc2e1cf07521078c6d65e9b59f.ctex"
+uid="uid://cto16xe3f2e2v"
+path="res://.godot/imported/atlasD12.png-b57088cf5b8efeba13bb24efe32e25ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minijuegos/Dado/d9.png"
-dest_files=["res://.godot/imported/d9.png-5bd346fc2e1cf07521078c6d65e9b59f.ctex"]
+source_file="res://Minijuegos/Dado/DadosDef/atlasD12.png"
+dest_files=["res://.godot/imported/atlasD12.png-b57088cf5b8efeba13bb24efe32e25ba.ctex"]
 
 [params]
 

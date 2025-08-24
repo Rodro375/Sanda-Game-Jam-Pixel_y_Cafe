@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c40udwia5odnw"]
 
-[ext_resource type="Texture2D" uid="uid://ben54603oii1x" path="res://Minijuegos/Esquivar/sprites/rayorojo.png" id="1_yvmop"]
+[ext_resource type="Texture2D" uid="uid://ben54603oii1x" path="res://Minijuegos/Esquivar/AssetsDef/rayorojo.png" id="1_yvmop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wul7"]
 size = Vector2(35, 14.5)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btf2o7ma3ocfb"
-path="res://.godot/imported/d12.png-0c0e31861a51b531e038971a728afa5a.ctex"
+uid="uid://ben54603oii1x"
+path="res://.godot/imported/rayorojo.png-f0c1f97565f59217fd5a48e79d86983f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Minijuegos/Dado/d12.png"
-dest_files=["res://.godot/imported/d12.png-0c0e31861a51b531e038971a728afa5a.ctex"]
+source_file="res://Minijuegos/Esquivar/AssetsDef/rayorojo.png"
+dest_files=["res://.godot/imported/rayorojo.png-f0c1f97565f59217fd5a48e79d86983f.ctex"]
 
 [params]
 
