@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu6icxus7uqj7"]
+[gd_scene load_steps=18 format=3 uid="uid://bu6icxus7uqj7"]
 
 [ext_resource type="Texture2D" uid="uid://cto16xe3f2e2v" path="res://Minijuegos/Minijuego 2/DadosDef/atlasD12.png" id="1_toqb1"]
 [ext_resource type="Script" uid="uid://q4i7x1ajv4p2" path="res://Minijuegos/Minijuego 2/dado.gd" id="2_toqb1"]
 [ext_resource type="Texture2D" uid="uid://d0ey0yd84np45" path="res://Minijuegos/Minijuego 2/DadosDef/AtlasD9.png" id="3_g8ns5"]
+[ext_resource type="AudioStream" uid="uid://m38awmxq1uyw" path="res://Minijuegos/Minijuego 2/Dados-001.wav" id="4_jtn2w"]
+[ext_resource type="AudioStream" uid="uid://cyk3samf6ypcw" path="res://Minijuegos/Minijuego 2/Dados-002.wav" id="5_6tpmg"]
 
 [sub_resource type="Gradient" id="Gradient_toqb1"]
 offsets = PackedFloat32Array(0, 0.521429)
@@ -299,6 +301,11 @@ _data = {
 &"lanzar": SubResource("Animation_g8ns5")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_54yqx"]
+streams_count = 2
+stream_0/stream = ExtResource("4_jtn2w")
+stream_1/stream = ExtResource("5_6tpmg")
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_g8ns5"]
 thickness = 0
 
@@ -340,6 +347,9 @@ libraries = {
 }
 speed_scale = 4.0
 
+[node name="sfx" type="AudioStreamPlayer" parent="SubViewport/PanelContainer/dado"]
+stream = SubResource("AudioStreamRandomizer_54yqx")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/PanelContainer"]
 layout_mode = 2
 
@@ -362,3 +372,4 @@ size_flags_vertical = 4
 text = "LANZAR"
 
 [connection signal="pressed" from="SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar" to="SubViewport/PanelContainer/dado" method="Lanzar"]
+[connection signal="pressed" from="SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar" to="SubViewport/PanelContainer/dado/sfx" method="play"]
