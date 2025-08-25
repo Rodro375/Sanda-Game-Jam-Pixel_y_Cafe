@@ -1,8 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://bu6icxus7uqj7"]
+[gd_scene load_steps=16 format=3 uid="uid://bu6icxus7uqj7"]
 
+<<<<<<< Updated upstream:Minijuegos/Dado/minijuego_dado.tscn
 [ext_resource type="Texture2D" uid="uid://cto16xe3f2e2v" path="res://Minijuegos/Dado/DadosDef/atlasD12.png" id="1_toqb1"]
 [ext_resource type="Script" uid="uid://q4i7x1ajv4p2" path="res://Minijuegos/Dado/dado.gd" id="2_toqb1"]
 [ext_resource type="Texture2D" uid="uid://d0ey0yd84np45" path="res://Minijuegos/Dado/DadosDef/AtlasD9.png" id="3_g8ns5"]
+=======
+[ext_resource type="Script" uid="uid://bhyuvc14ah33y" path="res://Minijuegos/Minijuego 2/minijuego_dado.gd" id="1_fo3f0"]
+[ext_resource type="Texture2D" uid="uid://cto16xe3f2e2v" path="res://Minijuegos/Minijuego 2/DadosDef/atlasD12.png" id="1_toqb1"]
+[ext_resource type="Script" uid="uid://q4i7x1ajv4p2" path="res://Minijuegos/Minijuego 2/dado.gd" id="2_toqb1"]
+[ext_resource type="Texture2D" uid="uid://d0ey0yd84np45" path="res://Minijuegos/Minijuego 2/DadosDef/AtlasD9.png" id="3_g8ns5"]
+>>>>>>> Stashed changes:Minijuegos/Minijuego 2/minijuego_dado.tscn
 
 [sub_resource type="Gradient" id="Gradient_toqb1"]
 offsets = PackedFloat32Array(0, 0.521429)
@@ -305,6 +312,11 @@ thickness = 0
 [node name="MinijuegoDado" type="SubViewportContainer"]
 offset_right = 800.0
 offset_bottom = 600.0
+<<<<<<< Updated upstream:Minijuegos/Dado/minijuego_dado.tscn
+=======
+size_flags_horizontal = 0
+script = ExtResource("1_fo3f0")
+>>>>>>> Stashed changes:Minijuegos/Minijuego 2/minijuego_dado.tscn
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -338,6 +350,9 @@ maximoTiempo = 0.5
 texturaD9 = ExtResource("3_g8ns5")
 texturaD12 = ExtResource("1_toqb1")
 
+[node name="Timer" type="Timer" parent="SubViewport/PanelContainer/dado"]
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/PanelContainer/dado"]
 libraries = {
 &"": SubResource("AnimationLibrary_fty55")
@@ -365,4 +380,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "LANZAR"
 
+[connection signal="dado_completado" from="SubViewport/PanelContainer/dado" to="." method="_on_dado_dado_completado"]
+[connection signal="timeout" from="SubViewport/PanelContainer/dado/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar" to="SubViewport/PanelContainer/dado" method="Lanzar"]

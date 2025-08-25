@@ -1,4 +1,5 @@
 extends Sprite2D
+signal dado_completado
 enum TipoDado{D6,D9,D12}
 @export var tipoDado:TipoDado
 @export var maximoTiempo:float
@@ -65,6 +66,8 @@ func Exito():
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("RESET")
 	await $AnimationPlayer.animation_finished
+	emit_signal("dado_completado")
+	$Timer.start()
 
 func Fracaso():
 	#AQUÍ DEBERÍA MANEJARSE EL SHADER
