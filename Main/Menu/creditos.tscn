@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvl2vd6b6b8xl"]
+[gd_scene load_steps=4 format=3 uid="uid://lrdcwjn5xige"]
 
-[ext_resource type="Script" uid="uid://bxkjqhqdlot86" path="res://Main/Menu/creditos.gd" id="1_vwgjj"]
+[ext_resource type="Script" path="res://Main/Menu/creditos.gd" id="1_vwgjj"]
 [ext_resource type="Texture2D" uid="uid://p6fehckb1wai" path="res://Referencias/creditos.png" id="2_rr5o2"]
 [ext_resource type="FontFile" uid="uid://tbycs1mrofsi" path="res://Font/Midfielder - Personal Used.ttf" id="3_vs40t"]
 

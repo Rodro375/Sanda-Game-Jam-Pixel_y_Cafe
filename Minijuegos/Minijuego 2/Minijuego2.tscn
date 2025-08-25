@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://codwn56dqjllq"]
+[gd_scene load_steps=3 format=3 uid="uid://divdvsg6kbmry"]
 
-[ext_resource type="Script" uid="uid://cfh8251hikfhu" path="res://Minijuegos/Minijuego 2/minijuego_2.gd" id="1_c0iv3"]
+[ext_resource type="Script" path="res://Minijuegos/Minijuego 2/minijuego_2.gd" id="1_c0iv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3i4bm"]
 size = Vector2(32, 32)

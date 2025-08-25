@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgsvpar2a5kwe"]
+[gd_scene load_steps=3 format=3 uid="uid://qe8qcrod1rq4"]
 
-[ext_resource type="Script" uid="uid://s7hmry7fltlv" path="res://Minijuegos/Minijuego 3/minijuego_3.gd" id="1_egtfq"]
+[ext_resource type="Script" path="res://Minijuegos/Minijuego 3/minijuego_3.gd" id="1_egtfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sogfn"]
 size = Vector2(24, 24)

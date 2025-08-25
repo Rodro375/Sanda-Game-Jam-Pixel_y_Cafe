@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dcrvpk22mvoh5" path="res://Referencias/barra 1.png" id="6_km7wv"]
 [ext_resource type="AudioStream" uid="uid://vvotix87b53y" path="res://Música/Lluvia.wav" id="6_muaga"]
 [ext_resource type="AudioStream" uid="uid://cxtrfph35iam5" path="res://Referencias/Thunder 1.wav" id="6_waagw"]
-[ext_resource type="PackedScene" uid="uid://codwn56dqjllq" path="res://Minijuegos/Minijuego 2/Minijuego2.tscn" id="6_x7swl"]
+[ext_resource type="PackedScene" uid="uid://divdvsg6kbmry" path="res://Minijuegos/Minijuego 2/Minijuego2.tscn" id="6_x7swl"]
 [ext_resource type="AudioStream" uid="uid://dmyvf8jenve0g" path="res://Referencias/Ambiente tenebroso_loop.wav" id="7_fn8ir"]
-[ext_resource type="PackedScene" uid="uid://bgsvpar2a5kwe" path="res://Minijuegos/Minijuego 3/minijuego_3.tscn" id="7_km7wv"]
+[ext_resource type="PackedScene" uid="uid://qe8qcrod1rq4" path="res://Minijuegos/Minijuego 3/minijuego_3.tscn" id="7_km7wv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_trxk1")

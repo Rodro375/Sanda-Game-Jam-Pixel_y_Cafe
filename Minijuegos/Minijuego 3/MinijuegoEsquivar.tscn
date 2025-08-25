@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8ryr7t6k6alx"]
 
-[ext_resource type="Script" uid="uid://bj1eq5xnafx5v" path="res://Minijuegos/Minijuego 3/minijuego_esquivar.gd" id="1_bswsu"]
+[ext_resource type="Script" path="res://Minijuegos/Minijuego 3/minijuego_esquivar.gd" id="1_bswsu"]
 [ext_resource type="PackedScene" uid="uid://0trgjpw1gmg" path="res://Minijuegos/Minijuego 3/Etapas/escenario1.tscn" id="1_eajab"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q3wr"]
