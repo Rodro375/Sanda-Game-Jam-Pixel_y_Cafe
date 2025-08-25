@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdupgf1g8xgmr"]
+[gd_scene load_steps=5 format=3 uid="uid://cemir6v4bn4n"]
 
 [ext_resource type="Script" uid="uid://1bva00doejw4" path="res://Main/Menu/menu.gd" id="1_iqq58"]
 [ext_resource type="Texture2D" uid="uid://dih47pjh4oi26" path="res://Referencias/dormitoooo.png" id="1_t0v3c"]
@@ -47,6 +47,7 @@ texture = ExtResource("3_so7dn")
 layout_mode = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 80
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -59,10 +60,16 @@ theme_override_fonts/font = ExtResource("4_so7dn")
 text = "Jugar
 "
 
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_so7dn")
+text = "CREDITOS"
+
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_so7dn")
 text = "Salir"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/GridContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/GridContainer/Credits" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]

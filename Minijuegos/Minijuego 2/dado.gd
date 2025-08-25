@@ -1,5 +1,6 @@
 extends Sprite2D
 enum TipoDado{D6,D9,D12}
+signal exito
 @export var tipoDado:TipoDado
 @export var maximoTiempo:float
 @export var texturaD9:Texture2D
@@ -65,6 +66,8 @@ func Exito():
 	await $AnimationPlayer.animation_finished
 	$AnimationPlayer.play("RESET")
 	await $AnimationPlayer.animation_finished
+	emit_signal("exito")
+	$Timer.start()
 
 func Fracaso():
 	#AQUÍ DEBERÍA MANEJARSE EL SHADER

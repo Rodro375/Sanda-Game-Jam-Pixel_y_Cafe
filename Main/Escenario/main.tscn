@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbxv6o88t78e6"]
+[gd_scene load_steps=12 format=3 uid="uid://bbxv6o88t78e6"]
 
 [ext_resource type="Script" uid="uid://qce2quoxsese" path="res://Main/Escenario/main.gd" id="1_trxk1"]
 [ext_resource type="Texture2D" uid="uid://b6r8070eu24ci" path="res://Referencias/dormitorio original.png" id="2_trxk1"]
 [ext_resource type="PackedScene" uid="uid://b7clufl4tpt6l" path="res://Minijuegos/Minijuego 1_2/minijuego_1.tscn" id="3_86tte"]
+[ext_resource type="FontFile" uid="uid://tbycs1mrofsi" path="res://Font/Midfielder - Personal Used.ttf" id="4_0effs"]
 [ext_resource type="Script" uid="uid://b3lpfhvx4i8wl" path="res://Main/Escenario/canvas_layer.gd" id="4_muaga"]
 [ext_resource type="Texture2D" uid="uid://dcrvpk22mvoh5" path="res://Referencias/barra 1.png" id="6_km7wv"]
 [ext_resource type="AudioStream" uid="uid://vvotix87b53y" path="res://Música/Lluvia.wav" id="6_muaga"]
+[ext_resource type="AudioStream" uid="uid://cxtrfph35iam5" path="res://Referencias/Thunder 1.wav" id="6_waagw"]
+[ext_resource type="PackedScene" uid="uid://codwn56dqjllq" path="res://Minijuegos/Minijuego 2/Minijuego2.tscn" id="6_x7swl"]
+[ext_resource type="AudioStream" uid="uid://dmyvf8jenve0g" path="res://Referencias/Ambiente tenebroso_loop.wav" id="7_fn8ir"]
+[ext_resource type="PackedScene" uid="uid://bgsvpar2a5kwe" path="res://Minijuegos/Minijuego 3/minijuego_3.tscn" id="7_km7wv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_trxk1")
@@ -17,9 +22,9 @@ script = ExtResource("4_muaga")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 216.0
+offset_left = 186.0
 offset_top = 40.0
-offset_right = -24.0
+offset_right = -54.0
 offset_bottom = -392.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -33,21 +38,71 @@ texture_progress = ExtResource("6_km7wv")
 
 [node name="Timer" type="Timer" parent="Barra de progreso"]
 wait_time = 0.5
-autostart = true
 
-[node name="Fondo" type="Sprite2D" parent="."]
-modulate = Color(0.254902, 0.254902, 0.254902, 1)
-position = Vector2(-9.09495e-13, -9.53674e-07)
-scale = Vector2(1, 1)
-texture = ExtResource("2_trxk1")
-centered = false
+[node name="TextureRect" type="TextureRect" parent="Barra de progreso"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
 
-[node name="Minijuego1" parent="." instance=ExtResource("3_86tte")]
-modulate = Color(0.427493, 0.427493, 0.427493, 1)
+[node name="ColorRect" type="ColorRect" parent="Barra de progreso"]
+offset_left = 112.0
+offset_top = 56.0
+offset_right = 528.0
+offset_bottom = 472.0
+color = Color(0.176419, 0.176419, 0.176419, 0.596078)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Label" type="Label" parent="Barra de progreso"]
+modulate = Color(0.787759, 0.787759, 0.787759, 1)
+offset_left = 128.0
+offset_top = 72.0
+offset_right = 512.0
+offset_bottom = 449.0
+theme_override_fonts/font = ExtResource("4_0effs")
+text = "Los recuerdos de una tragedia se reflejan en el negro firmamento, no sabes por qué justo hoy recuerdas su rostro, sientes que se te es reflejado en la luna, aquella luna que no encuentras en el cielo, sientes sus ojos caer sobre ti, pero no los alcanzas. Remordimiento.
+La noche es tranquila, la lluvia cae contra la ventana y las gotas recorren el material como lágrimas, el cielo esta llorando, pero no por tristeza, sino por miedo, algo va a ocurrir esta noche.
+Su recuerdo se cierne sobre tu mente, su rostro, su sonrisa, su ultima mirada. Una noche mas en la soledad de tus memorias y el internet, no hay nada mas que hacer, el pasado queda en tu inconsciente, solo es eso. Suspiras y te recuestas en cualquier lugar de tu cuarto, la noche es joven, quizás algo divertido te anime a olvidarlo, y si el destino quiere, superarlo."
+autowrap_mode = 2
+justification_flags = 235
+
+[node name="Button" type="Button" parent="Barra de progreso"]
+offset_left = 416.0
+offset_top = 432.0
+offset_right = 496.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("4_0effs")
+text = "Siguiente"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Barra de progreso"]
 stream = ExtResource("6_muaga")
 volume_db = -5.334
 autoplay = true
 
+[node name="Tormenta" type="AudioStreamPlayer2D" parent="Barra de progreso"]
+stream = ExtResource("6_waagw")
+volume_db = -4.0
+
+[node name="Tenebroso" type="AudioStreamPlayer2D" parent="Barra de progreso"]
+stream = ExtResource("7_fn8ir")
+volume_db = 12.0
+
+[node name="Fondo" type="Sprite2D" parent="."]
+modulate = Color(0.254902, 0.254902, 0.254902, 1)
+texture = ExtResource("2_trxk1")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Minijuego1" parent="." instance=ExtResource("3_86tte")]
+modulate = Color(0.427493, 0.427493, 0.427493, 1)
+
+[node name="Minijuego2" parent="." instance=ExtResource("6_x7swl")]
+
+[node name="Minijuego3" parent="." instance=ExtResource("7_km7wv")]
+
 [connection signal="timeout" from="Barra de progreso/Timer" to="Barra de progreso" method="_on_timer_timeout"]
+[connection signal="done" from="Minijuego1" to="Barra de progreso" method="_on_minijuego_1_done"]
+[connection signal="done" from="Minijuego2" to="Barra de progreso" method="_on_minijuego_2_done"]
+[connection signal="done" from="Minijuego3" to="Barra de progreso" method="_on_minijuego_3_done"]
+[connection signal="player_hitted" from="Minijuego3" to="Barra de progreso" method="_on_minijuego_3_player_hitted"]

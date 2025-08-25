@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bquflvieturyn"]
+[gd_scene load_steps=4 format=3 uid="uid://c8ryr7t6k6alx"]
 
+[ext_resource type="Script" uid="uid://bj1eq5xnafx5v" path="res://Minijuegos/Minijuego 3/minijuego_esquivar.gd" id="1_bswsu"]
 [ext_resource type="PackedScene" uid="uid://0trgjpw1gmg" path="res://Minijuegos/Minijuego 3/Etapas/escenario1.tscn" id="1_eajab"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q3wr"]
@@ -15,6 +16,7 @@ offset_right = 800.0
 offset_bottom = 600.0
 stretch = true
 mouse_target = true
+script = ExtResource("1_bswsu")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -32,3 +34,10 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1q3wr")
 
 [node name="Escenario" parent="SubViewport" instance=ExtResource("1_eajab")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[connection signal="player_hitted" from="SubViewport/Escenario" to="." method="_on_escenario_player_hitted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

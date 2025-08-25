@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://0trgjpw1gmg"]
+[gd_scene load_steps=12 format=3 uid="uid://0trgjpw1gmg"]
 
+[ext_resource type="Script" uid="uid://dy4rftkcmm6b1" path="res://Minijuegos/Minijuego 3/escenario_1.gd" id="1_nrlaa"]
 [ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Minijuego 3/Scripts/movimiento.gd" id="1_r8i0o"]
 [ext_resource type="Texture2D" uid="uid://bsfbdc4v3tr6a" path="res://Minijuegos/Minijuego 3/AssetsDef/jugador.png" id="2_q71a4"]
 [ext_resource type="Texture2D" uid="uid://bu8bq8ua18p6r" path="res://Minijuegos/Minijuego 3/AssetsDef/nave1.png" id="3_xhv4h"]
@@ -20,6 +21,7 @@ border_width_bottom = 20
 radius = 70.0793
 
 [node name="Escenario" type="Node2D"]
+script = ExtResource("1_nrlaa")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -89,3 +91,4 @@ proyectilEspecial = ExtResource("8_my0xu")
 espacioBalistico = NodePath("../espacioBalas")
 
 [connection signal="body_entered" from="jugador" to="jugador" method="_on_body_entered"]
+[connection signal="player_hitted" from="jugador" to="." method="_on_jugador_player_hitted"]

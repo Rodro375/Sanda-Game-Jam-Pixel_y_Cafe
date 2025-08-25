@@ -1,10 +1,23 @@
-[gd_scene load_steps=18 format=3 uid="uid://bu6icxus7uqj7"]
+[gd_scene load_steps=19 format=3 uid="uid://bu6icxus7uqj7"]
 
 [ext_resource type="Texture2D" uid="uid://cto16xe3f2e2v" path="res://Minijuegos/Minijuego 2/DadosDef/atlasD12.png" id="1_toqb1"]
 [ext_resource type="Script" uid="uid://q4i7x1ajv4p2" path="res://Minijuegos/Minijuego 2/dado.gd" id="2_toqb1"]
 [ext_resource type="Texture2D" uid="uid://d0ey0yd84np45" path="res://Minijuegos/Minijuego 2/DadosDef/AtlasD9.png" id="3_g8ns5"]
 [ext_resource type="AudioStream" uid="uid://m38awmxq1uyw" path="res://Minijuegos/Minijuego 2/Dados-001.wav" id="4_jtn2w"]
 [ext_resource type="AudioStream" uid="uid://cyk3samf6ypcw" path="res://Minijuegos/Minijuego 2/Dados-002.wav" id="5_6tpmg"]
+
+[sub_resource type="GDScript" id="GDScript_jtn2w"]
+script/source = "extends SubViewportContainer
+
+signal terminado
+
+func _on_timer_timeout():
+	emit_signal(\"terminado\")
+	queue_free()
+
+func _on_dado_exito():
+	$SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar.disabled = true
+"
 
 [sub_resource type="Gradient" id="Gradient_toqb1"]
 offsets = PackedFloat32Array(0, 0.521429)
@@ -310,9 +323,10 @@ stream_1/stream = ExtResource("5_6tpmg")
 thickness = 0
 
 [node name="MinijuegoDado" type="SubViewportContainer"]
-offset_right = 800.0
-offset_bottom = 600.0
+offset_right = 640.0
+offset_bottom = 480.0
 size_flags_horizontal = 0
+script = SubResource("GDScript_jtn2w")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -349,6 +363,10 @@ speed_scale = 4.0
 
 [node name="sfx" type="AudioStreamPlayer" parent="SubViewport/PanelContainer/dado"]
 stream = SubResource("AudioStreamRandomizer_54yqx")
+volume_db = -16.095
+
+[node name="Timer" type="Timer" parent="SubViewport/PanelContainer/dado"]
+one_shot = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/PanelContainer"]
 layout_mode = 2
@@ -371,5 +389,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "LANZAR"
 
+[connection signal="exito" from="SubViewport/PanelContainer/dado" to="." method="_on_dado_exito"]
+[connection signal="timeout" from="SubViewport/PanelContainer/dado/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar" to="SubViewport/PanelContainer/dado" method="Lanzar"]
 [connection signal="pressed" from="SubViewport/PanelContainer/VBoxContainer/HBoxContainer/lanzar" to="SubViewport/PanelContainer/dado/sfx" method="play"]
