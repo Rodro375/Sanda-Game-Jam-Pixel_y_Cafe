@@ -8,6 +8,7 @@ enum Comportamiento{unico,fijo,rafaga,circulo,especial}
 @export var velocidadesBala: Array[float]=[0,0,0,0,0]
 @export var proyectilEspecial: PackedScene
 @export var espacioBalistico: Node2D
+signal disparo
 func _physics_process(_delta: float) -> void:
 	if (comportamiento != Comportamiento.especial and comportamiento != Comportamiento.fijo):
 		look_at(jugador.position)
@@ -46,14 +47,14 @@ func Disparar():
 			bala.position=global_position
 			bala.look_at(jugador.global_position)
 			bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad])
-			
+			disparo.emit()
 		Comportamiento.fijo:
 			var bala:RigidBody2D=proyectilNormal.instantiate()
 			espacioBalistico.add_child(bala)
 			bala.position=global_position
 			bala.rotation=rotation
 			bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad])
-		
+			disparo.emit()
 		Comportamiento.rafaga:
 			var rotacionFija=rotation
 			for i in range(0,3):
@@ -63,6 +64,7 @@ func Disparar():
 				bala.position=global_position
 				bala.rotation=rotation
 				bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*(velocidadesBala[dificultad]*1.5)
+				disparo.emit()
 				await get_tree().create_timer(intervalosDisparo[4]).timeout #LAS BALAS TIENEN INTERFVALO MÍNIMO ENTRE SÍ
 				#POR DEFECTO ES 0.15s
 		Comportamiento.circulo:
@@ -72,6 +74,7 @@ func Disparar():
 				bala.position=global_position
 				bala.rotation_degrees=45*i
 				bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*velocidadesBala[dificultad]
+				disparo.emit()
 		
 		Comportamiento.especial:
 					var alerta:RigidBody2D=proyectilEspecial.instantiate()
@@ -96,12 +99,13 @@ func Disparar():
 					await tweenColor.finished
 					
 					
-					
+					####DISPARO
 					
 					
 					
 					alerta.linear_velocity=Vector2.RIGHT.rotated(alerta.rotation)*2000
 					alerta2.linear_velocity=Vector2.RIGHT.rotated(alerta2.rotation)*2000
+					disparo.emit()
 					await get_tree().create_timer(0.25).timeout
 					for i in range(1,4):
 						var bala:RigidBody2D=proyectilEspecial.instantiate()
@@ -109,11 +113,13 @@ func Disparar():
 						bala.position=posBala1
 						bala.rotation_degrees=rotBala1
 						bala.linear_velocity=Vector2.RIGHT.rotated(bala.rotation)*1200
+						disparo.emit()
 						var bala2:RigidBody2D=proyectilEspecial.instantiate()
 						espacioBalistico.add_child(bala2)
 						bala2.position=posBala2
 						bala2.rotation_degrees=rotBala2
 						bala2.linear_velocity=Vector2.RIGHT.rotated(bala2.rotation)*1200
+						disparo.emit()
 						await get_tree().create_timer(0.5).timeout
 						look_at(jugador.global_position)
 						rotation_degrees+=-90

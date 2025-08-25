@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkcc4ck6epv8a"]
+[gd_scene load_steps=14 format=3 uid="uid://bkcc4ck6epv8a"]
 
 [ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Minijuego 3/Scripts/movimiento.gd" id="1_s3niw"]
 [ext_resource type="Texture2D" uid="uid://bsfbdc4v3tr6a" path="res://Minijuegos/Minijuego 3/AssetsDef/jugador.png" id="2_xu6ed"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bhpid5j6k62uo" path="res://Minijuegos/Minijuego 3/Scripts/Enemigo.gd" id="4_rv7wd"]
 [ext_resource type="PackedScene" uid="uid://g63m6j66g8rn" path="res://Minijuegos/Minijuego 3/objetos/bala_1.tscn" id="5_gt6vp"]
 [ext_resource type="Texture2D" uid="uid://de255pgq1x83q" path="res://Minijuegos/Minijuego 3/AssetsDef/nave3.png" id="6_xu6ed"]
+[ext_resource type="AudioStream" uid="uid://dyr435sfgu3jq" path="res://Minijuegos/Minijuego 3/pugh.mp3" id="7_3vsyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0o"]
 draw_center = false
@@ -247,4 +248,11 @@ libraries = {
 }
 autoplay = "movimiento2"
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3vsyu")
+volume_db = -4.0
+pitch_scale = 0.2
+
 [connection signal="body_entered" from="jugador" to="jugador" method="_on_body_entered"]
+[connection signal="disparo" from="EnemigoVerde" to="sfx" method="play" binds= [0.9]]
+[connection signal="disparo" from="EnemigoVerde2" to="sfx" method="play" binds= [0.9]]
