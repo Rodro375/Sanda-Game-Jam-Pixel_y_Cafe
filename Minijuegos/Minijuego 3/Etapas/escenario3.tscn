@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdbbpdjltkhmt"]
+[gd_scene load_steps=13 format=3 uid="uid://cdbbpdjltkhmt"]
 
 [ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Minijuego 3/Scripts/movimiento.gd" id="1_is1la"]
 [ext_resource type="Texture2D" uid="uid://bsfbdc4v3tr6a" path="res://Minijuegos/Minijuego 3/AssetsDef/jugador.png" id="2_fmtts"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bhpid5j6k62uo" path="res://Minijuegos/Minijuego 3/Scripts/Enemigo.gd" id="4_ekk2b"]
 [ext_resource type="PackedScene" uid="uid://g63m6j66g8rn" path="res://Minijuegos/Minijuego 3/objetos/bala_1.tscn" id="5_a5wyi"]
 [ext_resource type="Texture2D" uid="uid://de255pgq1x83q" path="res://Minijuegos/Minijuego 3/AssetsDef/nave3.png" id="6_30uk7"]
+[ext_resource type="AudioStream" uid="uid://dyr435sfgu3jq" path="res://Minijuegos/Minijuego 3/pugh.mp3" id="7_y16fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0o"]
 draw_center = false
@@ -16,6 +17,33 @@ border_width_bottom = 20
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bml6"]
 radius = 70.0793
+
+[sub_resource type="Animation" id="Animation_ww1an"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemigoVerde:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(90, 500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemigoRojo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(710, 80)]
+}
 
 [sub_resource type="Animation" id="Animation_uv723"]
 resource_name = "movimiento1"
@@ -45,33 +73,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(710, 80), Vector2(710, 500)]
-}
-
-[sub_resource type="Animation" id="Animation_ww1an"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemigoVerde:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(90, 500)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemigoRojo:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(710, 80)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_is1la"]
@@ -144,4 +145,10 @@ libraries = {
 }
 autoplay = "movimiento1"
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_y16fn")
+volume_db = -4.0
+pitch_scale = 0.2
+
 [connection signal="body_entered" from="jugador" to="jugador" method="_on_body_entered"]
+[connection signal="disparo" from="EnemigoRojo" to="sfx" method="play" binds= [0.9]]

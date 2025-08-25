@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://criw4g3654548"]
+[gd_scene load_steps=12 format=3 uid="uid://criw4g3654548"]
 
 [ext_resource type="Script" uid="uid://bntmhg83vvum4" path="res://Minijuegos/Minijuego 3/Scripts/movimiento.gd" id="1_edvs1"]
 [ext_resource type="Texture2D" uid="uid://bsfbdc4v3tr6a" path="res://Minijuegos/Minijuego 3/AssetsDef/jugador.png" id="2_yutk4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://de255pgq1x83q" path="res://Minijuegos/Minijuego 3/AssetsDef/nave3.png" id="6_cd08r"]
 [ext_resource type="Texture2D" uid="uid://bm73nyu0vdf3l" path="res://Minijuegos/Minijuego 3/AssetsDef/nave2.png" id="7_5rj7b"]
 [ext_resource type="PackedScene" uid="uid://c40udwia5odnw" path="res://Minijuegos/Minijuego 3/objetos/bala_2.tscn" id="8_ccwln"]
+[ext_resource type="AudioStream" uid="uid://dyr435sfgu3jq" path="res://Minijuegos/Minijuego 3/pugh.mp3" id="9_3cr4i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0o"]
 draw_center = false
@@ -88,4 +89,11 @@ velocidadesBala = Array[float]([300.0, 350.0, 650.0, 950.0, 1500.0])
 proyectilEspecial = ExtResource("8_ccwln")
 espacioBalistico = NodePath("../espacioBalas")
 
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3cr4i")
+volume_db = -4.0
+pitch_scale = 0.2
+
 [connection signal="body_entered" from="jugador" to="jugador" method="_on_body_entered"]
+[connection signal="disparo" from="EnemigoVerde" to="sfx" method="play" binds= [0.9]]
+[connection signal="disparo" from="EnemigoRojo" to="sfx" method="play" binds= [0.9]]
